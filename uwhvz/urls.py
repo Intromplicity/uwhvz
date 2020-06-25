@@ -6,6 +6,11 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
+# urls.py: provides all the urls for the pages
+#   Requires: app.urls (under app) in: path("", include('app.urls')),
+#             common.py (under uwhvz) in: urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#   Used in: common.py (under uwhvz) in: ROOT_URLCONF = 'uwhvz.urls'
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),

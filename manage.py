@@ -2,6 +2,12 @@
 import os
 import sys
 
+# manage.py: a program to launch the uwhvz website
+#   Requires: development.py (under uwhvz->settings),
+#       in: os.environ.setdefault("DJANGO_SETTINGS_MODULE", "uwhvz.settings.development")
+
+# __name__ is set to its name ("manage") if imported, else set to __main__,
+#   Used to ensure this program is the 'wrapper'
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "uwhvz.settings.development")
     try:

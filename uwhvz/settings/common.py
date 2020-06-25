@@ -2,15 +2,32 @@ import os
 
 from django.contrib.messages import constants as messages
 
+# common.py: contains the website settings not for solely development/production
+#   Requires: urls.py (under uwhvz) in: ROOT_URLCONF = 'uwhvz.urls'
+#             jinga2.py (under uwhvz) in: 'environment': 'uwhvz.jinja2.environment',
+#             wsgi.py (under uwhvz) in: WSGI_APPLICATION = 'uwhvz.wsgi.application'
+#             static (folder, main folder) in: STATIC_DIR = os.path.join(BASE_DIR, 'static')
+#             media (folder, main folder) in: MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+#             app (folder, main folder) in: 'app',
+#   Used in: development.py in: from .common import *
+#            urls.py (under uwhvz): common.py (under uwhvz) in:
+#               urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Gets the location of the whole project; __file__ gives this file, abspath gives entire path to '__file__',
+#   and dirname gives parent directory; ex: C:\Users\hi; dirname gives C:\Users
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Gets location of static folder, or makes folder if non existent
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 if not os.path.exists(STATIC_DIR):
     os.makedirs(STATIC_DIR)
 
+# Gets location of media folder, or makes folder if non existent
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 if not os.path.exists(MEDIA_DIR):
     os.makedirs(MEDIA_DIR)
 
+# What packages need to be added
 INSTALLED_APPS = [
     'app',
     'django_su',  # must be before ``django.contrib.admin``    
@@ -41,6 +58,7 @@ INSTALLED_APPS = [
     'taggit',
 ]
 
+# Required middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,8 +72,10 @@ MIDDLEWARE = [
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
+# Gets all URLS of the website
 ROOT_URLCONF = 'uwhvz.urls'
 
+# Configures website templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
