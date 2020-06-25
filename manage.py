@@ -8,6 +8,7 @@ import sys
 
 # __name__ is set to its name ("manage") if imported, else set to __main__,
 #   Used to ensure this program is the 'wrapper'
+
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "uwhvz.settings.development")
     try:

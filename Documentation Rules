@@ -1,0 +1,37 @@
+Documentation is done through the following rules:
+    1. Normal documentation will be done as usual
+    2. In addition, files may include:
+        a. A quick summary of their purpose (in the format of ???.py: asdf)
+            Ex: common.py: contains the website settings not for solely development/production
+
+        b. Required files used in the code somewhere and usage in that code
+        (in the format of Requires:???.py in: asdf)
+            Ex: Requires: urls.py (under uwhvz) in: ROOT_URLCONF = 'uwhvz.urls
+
+        c. Files the current file is used in
+        (in the format of Used in:???.py in: asdf)
+            Ex: Used in: development.py in: from .common import *
+
+        Note to b & c: if the named file is not within the same folder, its location will be
+        in the (), as well if it is a folder instead of a program file
+            Ex: app (folder, main folder); (is folder?, location)
+                development.py; located in same folder as current file
+
+Completed Documentation:
+    app: NS
+    media: NS
+    static: NS
+    uwhvz: WIP
+        settings: WIP
+            common.py: WIP
+            development.py: CC
+            production.py: CC
+        jinja2.py: NS
+        urls.py: CC
+        wsgi.py: CC
+    manage.py: Complete
+
+* Complete: exactly what it says
+  CC: Currently Complete; all KNOWN documentation done, though more usages/requirements may be present
+  WIP: Duh.
+  NS: Not started

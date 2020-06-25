@@ -29,47 +29,49 @@ if not os.path.exists(MEDIA_DIR):
 
 # What packages need to be added
 INSTALLED_APPS = [
-    'app',
-    'django_su',  # must be before ``django.contrib.admin``    
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'sass_processor',
-    'compressor',
-    'svg',
-    'django_user_agents',
-    'rest_framework',
-    'rest_auth',
-    'wagtail.contrib.forms',
-    'wagtail.contrib.redirects',
-    'wagtail.embeds',
-    'wagtail.sites',
-    'wagtail.users',
-    'wagtail.snippets',
-    'wagtail.documents',
-    'wagtail.images',
-    'wagtail.search',
-    'wagtail.admin',
-    'wagtail.core',
-    'modelcluster',
-    'taggit',
+    'app',                          # The uwhvz app itself
+    'django_su',                    # Ability to log in as anyone as Django admin; MUST be before `django.contrib.admin`
+    'django.contrib.admin',         # Django admin interface
+    'django.contrib.auth',          # Authentication framework
+    'django.contrib.contenttypes',  # Tracks all models installed (models under app/models)
+    'django.contrib.sessions',      # Store data on anonymous users
+    'django.contrib.messages',      # Used for 'pop up' messages
+    'django.contrib.staticfiles',   # Condenses static files from all places to 1 location
+    'sass_processor',               # Processor to compile files from markup languages (SASS/SCSS)
+    'compressor',                   # Compresses linked/inline JavaScript/CSS to 1 cached file
+    'svg',                          # Adds svg template tag to use svg graphics/images in templates
+    'django_user_agents',           # Identifies visitor's browser, OS, device (includes mobile, tablet, touch)
+    'rest_framework',               # Provides tools to build Web APIs
+    'rest_auth',                    # Provides REST API points for User management for REST framework
+
+                                    # WAGTAIL PACKAGES
+    'wagtail.contrib.forms',        # Allows single page forms for data collection
+    'wagtail.contrib.redirects',    # Admin interface for creating redirects
+    'wagtail.embeds',               # For embedded content in Wagtail
+    'wagtail.sites',                # For organizing the website? (Documentation from Wagtail NA)
+    'wagtail.users',                # User editing interface
+    'wagtail.snippets',             # Wagtail interface for editing non-page models/object
+    'wagtail.documents',            # Wagtail document content type
+    'wagtail.images',               # Wagtail image content type
+    'wagtail.search',               # Search framework for page content
+    'wagtail.admin',                # Wagtail admin interface
+    'wagtail.core',                 # Core functions of Wagtail (Page class, model trees, Wagtail tree, etc.)
+    'modelcluster',                 # Extension of Django ForeignKey relation for Wagtail
+    'taggit',                       # Internal image/document tagging for Wagtail
 ]
 
 # Required middleware
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_user_agents.middleware.UserAgentMiddleware',
-    'wagtail.core.middleware.SiteMiddleware',
-    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    'django.middleware.security.SecurityMiddleware',            # Adds security enhancements to request/response cycle
+    'django.contrib.sessions.middleware.SessionMiddleware',     # Adds session support for anon users
+    'django.middleware.common.CommonMiddleware',                # Allows blocking users & URL rewrites
+    'django.middleware.csrf.CsrfViewMiddleware',                # Protects from cross site request forgeries
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Adds user attribute to HTTPRequest objects
+    'django.contrib.messages.middleware.MessageMiddleware',     # Adds cookie/session-based message support
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',   # Protects from clickjacking
+    'django_user_agents.middleware.UserAgentMiddleware',        # Adds user_agent attribute to 'request' in views.py
+    'wagtail.core.middleware.SiteMiddleware',                   # Routes pre-defined hosts to pages in Wagtail tree
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',  # Adds interface for adding redirects
 ]
 
 # Gets all URLS of the website
@@ -78,7 +80,9 @@ ROOT_URLCONF = 'uwhvz.urls'
 # Configures website templates
 TEMPLATES = [
     {
+        # To configure Django to support both Wagtail & Jinja2
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        # Sets directory path of templates to appropriate folder
         'DIRS': [os.path.join(BASE_DIR, 'app', 'templates', 'jinja2')],
         'APP_DIRS': False,
         'OPTIONS': {
@@ -114,8 +118,10 @@ TEMPLATES = [
     },
 ]
 
+# Gets the wsgi application from wsgi.py and wraps it in a variable
 WSGI_APPLICATION = 'uwhvz.wsgi.application'
 
+# Uses default settings of User_Agents package
 USER_AGENTS_CACHE = 'default'
 
 # Password validation
@@ -123,25 +129,31 @@ USER_AGENTS_CACHE = 'default'
 
 AUTH_PASSWORD_VALIDATORS = []
 
+# Overrides Django's default user model with the website's model
 AUTH_USER_MODEL = 'app.User'
 
+# Sets authentications list (things the website tries to use to authenticate a user)
 AUTHENTICATION_BACKENDS = (
     'django_su.backends.SuBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
+# Assigns URLS for Logging in, Log Out, and Finish Logging In
 WAGTAIL_FRONTEND_LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/dashboard/player'
 LOGOUT_REDIRECT_URL = '/'
 
+# Wraps HTTP requests to a transaction for the database
 ATOMIC_REQUESTS = True
 
+# Sets password hashers (for storing passwords); uses Argon2 package
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
 ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
+# Sets language & Time Zone
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -151,6 +163,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
+# Sets URL and Roots to media & static folders
 
 STATIC_URL = '/static/'
 STATIC_ROOT = STATIC_DIR
@@ -164,6 +177,7 @@ STATICFILES_FINDERS = [
     'compressor.finders.CompressorFinder',
 ]
 
+# Name of the Website (used in Admin log in)
 WAGTAIL_SITE_NAME = 'UW Humans vs Zombies'
 
 SASS_PRECISION = 8
