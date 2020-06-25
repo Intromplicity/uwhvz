@@ -1,5 +1,10 @@
 from .common import *
 
+# production.py: contains the settings for a LIVE website
+#   Requires: common.py (under uwhvz->settings) in: from .common import *
+#             db.sqlite3 (main folder) in: os.path.join(BASE_DIR, 'db.sqlite3')
+#   Used in: ???
+
 SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = False
 ALLOWED_HOSTS = ['*']

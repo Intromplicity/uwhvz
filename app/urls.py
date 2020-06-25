@@ -5,6 +5,10 @@ from rest_framework import routers
 
 from . import views
 
+# urls.py: provides the URLS for the app
+#   Requires: views (folder, under app->views) in: from . import views & view.xxxx.asview()
+#   Used in: app.urls (under uwhvz) in: path("", include('app.urls'))
+
 urlpatterns = [
     # Landing
     path("", views.IndexView.as_view(), name='index'),
