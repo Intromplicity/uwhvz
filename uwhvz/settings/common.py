@@ -80,13 +80,17 @@ ROOT_URLCONF = 'uwhvz.urls'
 # Configures website templates
 TEMPLATES = [
     {
-        # To configure Django to support both Wagtail & Jinja2
+        # To configure Django to support Jinja2 engine
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
         # Sets directory path of templates to appropriate folder
         'DIRS': [os.path.join(BASE_DIR, 'app', 'templates', 'jinja2')],
+        # Look for templates in installed applications? (No)
         'APP_DIRS': False,
+        # Provides additional parameters to pass to template backend
         'OPTIONS': {
+            # Provides path to a Jinja2 environment; MOST IMPORTANT for Jinja2
             'environment': 'uwhvz.jinja2.environment',
+            # Configures Jinja2 extentions (Wagtail, SASS processor & Compressor)
             'extensions': [
                 'sass_processor.jinja2.ext.SassSrc',
                 'wagtail.core.jinja2tags.core',
@@ -94,6 +98,9 @@ TEMPLATES = [
                 'wagtail.images.jinja2tags.images',
                 'compressor.contrib.jinja2ext.CompressorExtension',
             ],
+            # List of paths to callables used to populate content when templates rendered;
+            #   These take in request objects to return dictionary of items to merge with context
+            #       (Though all but the last ones are the default generated; last is for spoofing a user)
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -104,8 +111,10 @@ TEMPLATES = [
         },
     },
     {
+        # Configure Django for its own template engine
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
+        # Look for templates in installed applications? (Yes)
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,6 +136,7 @@ USER_AGENTS_CACHE = 'default'
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
+# Configure password validation; did user make a good password?
 AUTH_PASSWORD_VALIDATORS = []
 
 # Overrides Django's default user model with the website's model
@@ -143,7 +153,7 @@ WAGTAIL_FRONTEND_LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/dashboard/player'
 LOGOUT_REDIRECT_URL = '/'
 
-# Wraps HTTP requests to a transaction for the database
+# Wraps HTTP requests to a transaction for the database; takes up a bit more space than if it wasn't
 ATOMIC_REQUESTS = True
 
 # Sets password hashers (for storing passwords); uses Argon2 package
@@ -170,6 +180,7 @@ STATIC_ROOT = STATIC_DIR
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
 
+# Sets list of finder backends for finding static files
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -180,10 +191,12 @@ STATICFILES_FINDERS = [
 # Name of the Website (used in Admin log in)
 WAGTAIL_SITE_NAME = 'UW Humans vs Zombies'
 
-SASS_PRECISION = 8
-SASS_OUTPUT_STYLE = 'compact'
-SASS_PROCESSOR_ENABLED = True
+# Sets SASS (style sheet language that allows non-CSS features in CSS) settings
+SASS_PRECISION = 8              # Calculates any calculation to 8 decimal places
+SASS_OUTPUT_STYLE = 'compact'   # Makes coding output rules take up 1 line each for each property
+SASS_PROCESSOR_ENABLED = True   # Enables the SASS processor
 
+# Customizes messages based on type of message
 MESSAGE_TAGS = {
     messages.DEBUG: 'dark',
     messages.INFO: 'info',
@@ -192,8 +205,12 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
+# Where global settings of the REST framework API are kept
 REST_FRAMEWORK = {
+    # Customizes process of dividing something into pages
+    # Enables PageNUmberPagination style globally
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # Sets size of the pages
     'PAGE_SIZE': 10
 }
 

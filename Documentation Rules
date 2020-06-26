@@ -22,16 +22,17 @@ Completed Documentation:
     media: NS
     static: NS
     uwhvz: WIP
-        settings: WIP
-            common.py: WIP
-            development.py: CC
-            production.py: CC
+        settings: CD
+            common.py: CD
+            development.py: CD
+            production.py: CD
         jinja2.py: NS
-        urls.py: CC
-        wsgi.py: CC
-    manage.py: Complete
+        urls.py: RC
+        wsgi.py: RC
+    manage.py: X
 
-* Complete: exactly what it says
-  CC: Currently Complete; all KNOWN documentation done, though more usages/requirements may be present
+* X: Required & utilised uses as well as normal documentation ALL DONE
+  CD: Complete Documentation; file documentation complete EXCEPT WHERE FILE IS USED
+  RC: Request Complete; documentation of required items finished
   WIP: Duh.
   NS: Not started
