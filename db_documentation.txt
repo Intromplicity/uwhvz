@@ -1,3 +1,0 @@
-# db.sqlite3: contains database for uwhvz
-#   Used in: development.py in: os.path.join(BASE_DIR, 'db.sqlite3')
-#            production.py in: DATABASES = {...}

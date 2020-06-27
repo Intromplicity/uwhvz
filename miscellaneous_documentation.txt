@@ -1,0 +1,13 @@
+# db.sqlite3: contains database for uwhvz
+#   Used in: development.py in: os.path.join(BASE_DIR, 'db.sqlite3')
+#            production.py in: DATABASES = {...}
+
+# app (folder): contains whole app for uwhvz
+#   Used in: common.py in: INSTALLED_APPS = ['app',...
+
+# media (folder): contains media for uwhvz
+#   Used in: common.py in: MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+
+# static (folder): contains css stylesheets
+#   Used in: common.py in: STATIC_DIR = os.path.join(BASE_DIR, 'static')
+
