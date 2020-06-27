@@ -8,7 +8,9 @@ from app.util import most_recent_game
 from datetime import datetime, date
 
 # moderator.py: ???
-#   Requires: ???
+#   Requires: models (folder, app) in:
+#               from app.models import ParticipantRole, SignupLocation, Player, User, PlayerRole, Faction, ModifierType
+#             util.py (app) in: from app.util import most_recent_game
 #   Used in: ???
 
 
