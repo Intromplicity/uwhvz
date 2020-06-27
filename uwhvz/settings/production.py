@@ -2,7 +2,7 @@ from .common import *
 
 # production.py: contains the settings for a LIVE website
 #   Requires: common.py (under uwhvz/settings) in: from .common import *
-#             db.sqlite3 (main folder) in: os.path.join(BASE_DIR, 'db.sqlite3')
+#             db.sqlite3 (main folder) in: DATABASES = {...}
 #   Used in: wsgi.py (uwhvz) in: os.environ.setdefault("DJANGO_SETTINGS_MODULE", "uwhvz.settings.production")
 
 SECRET_KEY = os.environ['SECRET_KEY']
