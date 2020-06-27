@@ -18,17 +18,40 @@ Documentation is done through the following rules:
                 development.py; located in same folder as current file
 
 Completed Documentation:
-    app: NS
+    app: WIP
+        api: NS
+        management: NS
+        migrations: NS
+        models: NS
+        serializers: NS
+        templates: NS
+        tests: NS
+        views: WIP
+            forms: WIP
+                moderator.py: NS
+                player.py: NS
+                signup.py: NS
+                volunteer.py: NS
+            dashboard.py: NS
+            moderator.py: NS
+            player.py: NS
+            signup.py: NS
+            volunteer.py: NS
+        admin.py: WIP
+        apps.py: NS
+        mail.py: NS
+        urls.py: NS
+        util.py: NS
     media: NS
     static: NS
-    uwhvz: WIP
+    uwhvz: CD
         settings: CD
             common.py: CD
             development.py: CD
             production.py: CD
-        jinja2.py: NS
-        urls.py: RC
-        wsgi.py: RC
+        jinja2.py: CD
+        urls.py: CD
+        wsgi.py: CD
     manage.py: X
 
 * X: Required & utilised uses as well as normal documentation ALL DONE

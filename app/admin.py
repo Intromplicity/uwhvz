@@ -4,6 +4,11 @@ from django.contrib.auth.admin import UserAdmin
 from app.models import *
 from app.views.forms import UserCreationForm, UserChangeForm
 
+# admin.py: ???
+#   Requires: models (folder, app) in: from app.models import *
+#             forms (folder, app/views) in: from app.views.forms import UserCreationForm, UserChangeForm
+#   Used in: ???
+
 def mark_oz_bulk(ModelAdmin, request, queryset):
     queryset.update(is_oz=True)
 mark_oz_bulk.short_description = "Make OZ"

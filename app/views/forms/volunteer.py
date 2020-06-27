@@ -3,6 +3,10 @@ from django import forms
 from app.models import SignupLocation
 from app.util import most_recent_game
 
+# volunteer.py: ???
+#   Requires: ???
+#   Used in: ???
+
 
 def get_signup_locations():
     return ((x.id, x) for x in SignupLocation.objects.filter(game=most_recent_game()))

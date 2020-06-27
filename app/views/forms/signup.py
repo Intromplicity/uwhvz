@@ -2,6 +2,11 @@ from django import forms
 import django.contrib.auth.forms as authforms
 from app.models import User
 
+# signup.py: ???
+#   Requires: ???
+#   Used in: ???
+
+
 class UserCreationForm(authforms.UserCreationForm):
 
     class Meta:

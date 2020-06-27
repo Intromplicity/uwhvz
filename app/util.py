@@ -11,6 +11,11 @@ from queryset_sequence import QuerySetSequence
 
 from app.models import Game, Player, Moderator, Spectator
 
+# util.py: ???
+#   Requires: ???
+#   Used in: jinja2.py (uwhvz) in:
+#        from app.util import format_datetime
+
 
 def participant_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
     def _is_participant(user):

@@ -2,6 +2,10 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
+# mail.py: ???
+#   Requires: ???
+#   Used in: ???
+
 
 def _send_mail_template(request, plaintext_template, html_template, subject, recipient, context=None):
     msg_plain = render_to_string(plaintext_template, context, request)
